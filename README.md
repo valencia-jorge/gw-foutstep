@@ -1,7 +1,15 @@
 # gw-foutstep
 
-Implements the method of [Valencia et al. arXiv:2406.16636](https://arxiv.org/abs/2406.16636)
+Implements the method of [Valencia et al. (arXiv:2406.16636)](https://arxiv.org/abs/2406.16636)
 to compute Fourier transforms of discrete data with step-like behaviors.
+
+## Installation steps
+
+`gw-foutstep` is not (yet!) available in PyPI. Please, use the following command to install it
+using `pip`:
+```
+$ pip install git+https://github.com/valencia-jorge/gw-foutstep.git
+```
 
 ## Citing this work
 
