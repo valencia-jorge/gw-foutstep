@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=64", "setuptools_scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+authors = [
+    {name = "Jorge Valencia", email = "jorge.valencia@ligo.org"},
+    {name = "Rodrigo Tenorio", email = "rodrigo.tenorio@ligo.org"},
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Scientific/Engineering :: Astronomy",
+    "Topic :: Scientific/Engineering :: Physics"
+]
+dependencies = [
+    "numpy",
+]
+description = "Fourier Transform of Step Functions"
+dynamic = ["version"]
+license = {file = "LICENSE.md"}
+name = "foutstep"
+readme = "README.md"
+requires-python = ">=3.11"
+
+[project.optional-dependencies]
+dev = [
+    "black", 
+    "flake8", 
+    "pytest"
+]
+
+[project.urls]
+Homepage = "https://github.com/valencia-jorge/gw-foutstep"
+Issues = "https://github.com/valencia-jorge/gw-foutstep/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["foutstep"]
+
+[tool.setuptools_scm]
+
+[tool.pytest.ini_options]
+log_cli = true
+log_cli_level = "DEBUG"
+log_file_level = "DEBUG"
+
