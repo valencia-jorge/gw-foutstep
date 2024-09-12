@@ -37,7 +37,7 @@ def syss_dft(
     residual = td_samples - regularizator
     residual_fd = dt * np.fft.fft(residual)
 
-    frequencies = np.fft.fft(len(td_samples), dt)
+    frequencies = np.fft.freq(len(td_samples), dt)
     fd_samples = (
         residual_fd
         + sigmoid_fd(frequencies, sigmoid_loc - timestamps[0], sigmoid_width),
