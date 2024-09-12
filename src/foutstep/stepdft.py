@@ -14,22 +14,22 @@ def syss_dft(
     Parameters
     ----------
     timestamps:
-        
+
     td_samples:
 
     dt:
         Timestep. This is used to re-scale the FT.
     sigmoid_loc:
-        
+
     sigmoid_width:
-        
+
 
     Returns
     -------
     frequencies:
-        
+
     fd_samples:
-        Regularized DFT of td_samples 
+        Regularized DFT of td_samples
     """
 
     regularizator = fit_sigmoid(td_samples, timestamps, sigmoid_loc, sigmoid_width)
@@ -38,9 +38,8 @@ def syss_dft(
     residual_fd = dt * np.fft.fft(residual)
 
     frequencies = np.fft.fftfreq(len(td_samples), dt)
-    fd_samples = (
-        residual_fd
-        + sigmoid_fd(frequencies, sigmoid_loc - timestamps[0], sigmoid_width),
+    fd_samples = residual_fd + sigmoid_fd(
+        frequencies, sigmoid_loc - timestamps[0], sigmoid_width
     )
 
     return (frequencies, fd_samples)
