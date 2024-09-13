@@ -1,4 +1,7 @@
 # gw-foutstep
+[![arXiv](https://img.shields.io/badge/arXiv-2406.16636-b31b1b.svg)](https://arxiv.org/abs/2406.16636)
+[![PyPI version](https://badge.fury.io/py/foutstep.svg)](https://badge.fury.io/py/foutstep)
+
 
 Implements the method of [Valencia et al. (arXiv:2406.16636)](https://arxiv.org/abs/2406.16636)
 to compute Fourier transforms of discrete data with step-like behaviors.
