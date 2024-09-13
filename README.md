@@ -5,10 +5,10 @@ to compute Fourier transforms of discrete data with step-like behaviors.
 
 ## Installation steps
 
-`gw-foutstep` is not (yet!) available in PyPI. Please, use the following command to install it
+`gw-foutstep` is available in PyPI. Please, use the following command to install it
 using `pip`:
 ```
-$ pip install git+https://github.com/valencia-jorge/gw-foutstep.git
+$ pip install foutstep
 ```
 
 ## Citing this work
