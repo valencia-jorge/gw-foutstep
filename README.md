@@ -1,4 +1,5 @@
 # gw-foutstep
+![alt text](./logo.png)
 [![arXiv](https://img.shields.io/badge/arXiv-2406.16636-b31b1b.svg)](https://arxiv.org/abs/2406.16636)
 [![PyPI version](https://badge.fury.io/py/foutstep.svg)](https://badge.fury.io/py/foutstep)
 
