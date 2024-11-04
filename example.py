@@ -17,9 +17,7 @@ td_samples = np.tanh(timestamps / 0.5) + 0.5 * np.exp(
 
 # Compute the FFT with regularisation!
 frequencies, fd_samples = syss_dft(
-    td_samples,
-    timestamps,
-    dt,
+    timestamps, td_samples, dt, sigmoid_loc=0, sigmoid_width=0.1
 )
 
 # Compute without regularisation for comparison...
@@ -58,17 +56,3 @@ try:
     plt.savefig(sys.argv[1])
 except IndexError:
     plt.show()
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
