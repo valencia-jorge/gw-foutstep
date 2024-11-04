@@ -11,7 +11,7 @@ def syss_dft(
     """
     Compute the Fourier transform of discrete data containing
     step-like behaviors as described in [Valencia et al. (arXiv:2406.16636)].
-    The Fourier convention follows Eq.(2.16). 
+    The Fourier convention follows Eq.(2.16).
 
 
     Parameters
@@ -41,16 +41,18 @@ def syss_dft(
 
     """
 
-    regularizator = fit_sigmoid(td_samples, timestamps, sigmoid_loc, sigmoid_width)
+    regularizator, regularizator_amplitude = fit_sigmoid(
+        td_samples, timestamps, sigmoid_loc, sigmoid_width
+    )
 
     residual = td_samples - regularizator
     residual_fd = dt * np.fft.fft(residual)
 
     frequencies = np.fft.fftfreq(len(td_samples), dt)
     # Eq. (3.7)
-    fd_samples = residual_fd + sigmoid_fd(
+    fd_samples = residual_fd + regularizator_amplitude * sigmoid_fd(
         frequencies, sigmoid_loc - timestamps[0], sigmoid_width
-    )  
+    )
 
     return (frequencies, fd_samples)
 
@@ -83,7 +85,7 @@ def fit_sigmoid(
 
     Returns
     ------------
-        y-coordinates of the regularizing sigmoid.
+        y-coordinates of the regularizing sigmoid and the sigmoid's amplitude
 
     """
 
@@ -95,10 +97,7 @@ def fit_sigmoid(
         one_zero_sigmoid[-1] * td_samples[0] - one_zero_sigmoid[0] * td_samples[-1]
     ) / denominator
 
-    return (
-        fit_amplitude * sigmoid(timestamps, loc=sigmoid_loc, width=sigmoid_width)
-        + fit_offset
-    )
+    return (fit_amplitude * one_zero_sigmoid + fit_offset, fit_amplitude)
 
 
 def sigmoid(
@@ -129,7 +128,7 @@ def sigmoid(
 
 def sigmoid_fd(f: float, loc: float, width: float):
     """
-    Closed-form continuous Fourier transform of `sigmoid` 
+    Closed-form continuous Fourier transform of `sigmoid`
     following the conventions of Eq.(2.1).
 
 
