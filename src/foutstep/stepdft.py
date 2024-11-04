@@ -7,6 +7,7 @@ def syss_dft(
     dt: float,
     sigmoid_loc: float = 0,
     sigmoid_width: float = 10,
+    xp=np,
 ):
     """
     Compute the Fourier transform of discrete data containing
@@ -42,16 +43,16 @@ def syss_dft(
     """
 
     regularizator, regularizator_amplitude = fit_sigmoid(
-        td_samples, timestamps, sigmoid_loc, sigmoid_width
+        td_samples, timestamps, sigmoid_loc, sigmoid_width, xp=xp
     )
 
     residual = td_samples - regularizator
-    residual_fd = dt * np.fft.fft(residual)
+    residual_fd = dt * xp.fft.fft(residual)
 
-    frequencies = np.fft.fftfreq(len(td_samples), dt)
+    frequencies = xp.fft.fftfreq(len(td_samples), dt)
     # Eq. (3.7)
     fd_samples = residual_fd + regularizator_amplitude * sigmoid_fd(
-        frequencies, sigmoid_loc - timestamps[0], sigmoid_width
+        frequencies, sigmoid_loc - timestamps[0], sigmoid_width, xp=xp
     )
 
     return (frequencies, fd_samples)
@@ -62,6 +63,7 @@ def fit_sigmoid(
     timestamps: np.array,
     sigmoid_loc: float,
     sigmoid_width: float,
+    xp=np,
 ):
     """
     Fits the regularizing sigmoid to the discrete dataset according to Eq.(3.6).
@@ -89,7 +91,7 @@ def fit_sigmoid(
 
     """
 
-    one_zero_sigmoid = sigmoid(timestamps, loc=sigmoid_loc, width=sigmoid_width)
+    one_zero_sigmoid = sigmoid(timestamps, loc=sigmoid_loc, width=sigmoid_width, xp=xp)
 
     denominator = one_zero_sigmoid[-1] - one_zero_sigmoid[0]
     fit_amplitude = (td_samples[-1] - td_samples[0]) / denominator
@@ -104,6 +106,7 @@ def sigmoid(
     t: float,
     loc: float,
     width: float,
+    xp=np,
 ):
     """
     Defines a regularizing sigmoid with amplitude 1 and offset 0.
@@ -123,10 +126,10 @@ def sigmoid(
         y-coordinates of the sigmoid.
 
     """
-    return 0.5 * (np.tanh((t - loc) / width) + 1)
+    return 0.5 * (xp.tanh((t - loc) / width) + 1)
 
 
-def sigmoid_fd(f: float, loc: float, width: float):
+def sigmoid_fd(f: float, loc: float, width: float, xp=np):
     """
     Closed-form continuous Fourier transform of `sigmoid`
     following the conventions of Eq.(2.1).
@@ -148,6 +151,6 @@ def sigmoid_fd(f: float, loc: float, width: float):
         -0.5j
         * np.pi
         * width
-        * np.exp(-2j * np.pi * f * loc)
-        / np.sinh(np.pi**2 * f * width)
+        * xp.exp(-2j * np.pi * f * loc)
+        / xp.sinh(np.pi**2 * f * width)
     )
