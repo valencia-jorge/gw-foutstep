@@ -4,7 +4,7 @@
 [![PyPI version](https://badge.fury.io/py/foutstep.svg)](https://badge.fury.io/py/foutstep)
 
 
-Implements the method of [Valencia et al. (2024)](https://arxiv.org/abs/2406.16636)
+Implements the method of [J. Valencia et al. (2024)](https://journals.aps.org/prd/abstract/10.1103/PhysRevD.110.124026)
 to compute Fourier transforms of discrete data with step-like behaviors.
 
 ## Installation steps
@@ -19,15 +19,18 @@ $ pip install foutstep
 
 If this package has been useful for you work, please cite the following paper:
 ```
-@article{Valencia:2024zhi,
-    author 	  = "Valencia, Jorge and Tenorio, Rodrigo and Rossell\'o-Sastre, Maria and Husa, Sascha",
-    title 	  = "{Mind the step: On the frequency-domain analysis of gravitational-wave memory waveforms}",
-    eprint 	  = "2406.16636",
-    archivePrefix = "arXiv",
-    primaryClass  = "gr-qc",
-    reportNumber  = "LIGO-P2400263",
-    month 	  = "6",
-    year 	  = "2024",
-    journal	  ="arXiv e-print",
+@article{PhysRevD.110.124026,
+  title = {Frequency-domain analysis of gravitational-wave memory waveforms},
+  author = {Valencia, Jorge and Tenorio, Rodrigo and Rossell\'o-Sastre, Maria and Husa, Sascha},
+  journal = {Phys. Rev. D},
+  volume = {110},
+  issue = {12},
+  pages = {124026},
+  numpages = {16},
+  year = {2024},
+  month = {Dec},
+  publisher = {American Physical Society},
+  doi = {10.1103/PhysRevD.110.124026},
+  url = {https://link.aps.org/doi/10.1103/PhysRevD.110.124026}
 }
 ```
